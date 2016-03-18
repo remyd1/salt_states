@@ -1,0 +1,8 @@
+#!/bin/sh
+
+/usr/bin/setfacl -R -m u:operator:rX /root
+/usr/bin/setfacl -R -b /root/.ssh
+
+if [ -d /var/lib/mysql ]; then 
+    /usr/bin/setfacl -R -m u:operator:rX /var/lib/mysql
+fi
