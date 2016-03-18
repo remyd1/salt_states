@@ -6,6 +6,12 @@
 
 Put the hostname of the machine and complete with ip address (last number), username to use for backups, directories to backup (RsyncShareName) and to exclude (BackupFilesExclude)
 
+Syntax could be found [here](https://groups.google.com/forum/#!topic/salt-users/aKbY6xnOW_w)
+
+
+- Create a salt nodegroup where you put your backuppc servers.
+
+
 - Apply this formula:
 
 ```bash
@@ -19,3 +25,4 @@ This will deploy new backuppc clients config files and update /etc/hosts on back
 ```bash
 salt '$minion' state.sls backuppc_client
 ```
+
