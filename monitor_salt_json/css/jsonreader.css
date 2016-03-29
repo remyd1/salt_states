@@ -1,0 +1,10 @@
+table.perso {
+  border:2px solid black;
+}
+
+.true {
+  background-color:green;
+}
+.false {
+  background-color:red;
+}
