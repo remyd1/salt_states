@@ -2,7 +2,7 @@
 
 The main idea here, is to have salt formulas to do basic monitoring with some states (ganglia, check_states) and salt modules, and backup some minions using states, pillar and backuppc.
 
-All you need are the states here. The monitor_salt_json contains files to read json outputs and create a cron file (it is not real time monitoring, just reports).
+All you need are the states here and a pillar. The monitor_salt_json contains files to read json outputs and create a cron file (it is not real time monitoring, just reports).
 
 Pillar file content:
 
