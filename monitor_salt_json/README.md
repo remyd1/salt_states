@@ -4,6 +4,8 @@ Real time monitoring should be done using [salt mine](https://docs.saltstack.com
 
 You should also add a true monitoring solution to complete this (see ganglia states for example).
 
+You may also consider [salt-monitor](https://github.com/thatch45/salt-monitor).
+
 Once this warning said, you could use some files here to create json files regularly (see check_salt_json.cron.bash file) and the php code to display the results. This means that you need a web server on your salt master with php enabled.
 
 The cron script creates daily json files in ``` /var/www/html/exports/YYYYMM/YYYYMMDD_type_of_export.json ``` .
