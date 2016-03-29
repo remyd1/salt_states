@@ -1,3 +1,7 @@
+This formula is not a backuppc server configuration tool.
+
+You need a backuppc server already installed to use this salt state.
+
 
 # How can I backup a new host ?
 

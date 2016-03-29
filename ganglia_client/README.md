@@ -1,3 +1,5 @@
+Firstly, you need a ganglia server. This formula will not create it for you. It is just connecting the client to the server and installs the ganglia package if needed.
+
 Usage:
 
 ```bash
