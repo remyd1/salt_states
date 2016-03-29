@@ -204,15 +204,15 @@ $( document ).ready(function() {
     <br />
     <br />
     Select Data :
-    <input type="radio" name="data" value="_hosts_status" /> Statut des serveurs
+    <input type="radio" name="data" value="_hosts_status" /> Servers states
     &nbsp;
     &nbsp;
     &nbsp;
-    <input type="radio" name="data" value="_services" /> Statut des services
+    <input type="radio" name="data" value="_services" /> Services states
     &nbsp;
     &nbsp;
     &nbsp;
-    <input type="radio" name="data" value="_disks" /> Statut des disques
+    <input type="radio" name="data" value="_disks" /> Disk usage
     <br />
     <br />
 <input type='submit' value='ok' id='subm' />
