@@ -11,7 +11,8 @@ Syntax could be found [here (first mail)](https://groups.google.com/forum/#!topi
 Example :
 
 ```
-www:
+machines:
+  www:
     ip: 26
     user: root
     RsyncShareName:
