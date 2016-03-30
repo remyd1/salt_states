@@ -1,10 +1,12 @@
 # salt_states
 
-The main idea here, is to have salt formulas to do [basic monitoring](monitor_salt_json/README.md) with some states (ganglia, [check_services](check_services/README.md)) and salt modules, and [backup](backuppc_add_client/README.md) some minions using states, pillar and backuppc. You just have to maintain a pillar file and refresh it on minions.
+The main idea here, is to have salt formulas to do:
+ - [basic monitoring](monitor_salt_json/README.md) using some states (ganglia, [check_services](check_services/README.md)) and salt modules, 
+ - [backup](backuppc_add_client/README.md) some minions using states and backuppc.
 
-All you need are the states here and a pillar. The [monitor_salt_json](monitor_salt_json/README.md) contains files to read json outputs and create a cron file (it is not real time monitoring, just reports).
+All you need are the states here and a pillar. _You just have to maintain one pillar file and refresh it on minions._
 
-Pillar file content:
+Here is a sample of the pillar file content:
 
 ```
 machines:
@@ -30,3 +32,4 @@ machines:
 
 ```
 
+The [monitor_salt_json](monitor_salt_json/README.md) contains files to read json outputs and create a cron file (it is not real time monitoring, just reports). With this, you have a very brief information of your servers pools in a web page.
