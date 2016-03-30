@@ -17,8 +17,15 @@ The cron script creates daily json files in ```/var/www/html/exports/YYYYMM/YYYY
 
 You could change this behaviour, by adding hours, minutes, seconds to the filename. However, you will have to change the way you retrieve data in the php file (add a panel to choose the time ([example](http://trentrichardson.com/examples/timepicker/))).
 
-If you want you could also add a mail alert manually by adding a daily cron (or more frequently if you changed the periodicity). You could achieve this either with a [jsawk](https://github.com/micha/jsawk) script combined with mail command or by parsing directly the content of your json files manually (also combined with mail command):
+If you want you could also add a mail alert manually by adding a daily cron (or more frequently if you changed the periodicity). You could achieve this either with a [jsawk](https://github.com/micha/jsawk)[\*](#jsawk_comment) script combined with mail command or by parsing directly the content of your json files manually (also combined with mail command):
+
 ```bash
 grep 'false' /var/www/html/exports/`date '+%Y%m'`/`date '+%Y%m%d'`_hosts_status.json
 grep -B5 -A4 'false' /var/www/html/exports/`date '+%Y%m'`/`date '+%Y%m%d'`_services.json
+```
+
+(\*) <a><a id="#jsawk_comment"> e.g. : 
+
+```bash
+cat /var/www/html/exports/`date '+%Y%m'`/`date '+%Y%m%d'`_hosts_status.json |jsawk 'return this.myhost'
 ```
