@@ -1,7 +1,7 @@
 If you want to to basic monitoring with salt, it is possible with the [check_services](../check_services/README.md) salt states, and some modules already availables (disk.percent , test.ping).
 
-The main advantage of this solution is to have a very brief information on the state of your servers pool (the minions) in a single web page with a system of green/red color:
- - disk usage (percentage),
+The main advantage of this solution is to have a very brief information about the state of your servers pool (the minions) in a single web page with a system of green/red color:
+ - disk usage (percentage, red if &gt;90% ),
  - server state,
  - service state.
 
