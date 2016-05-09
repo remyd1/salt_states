@@ -21,6 +21,9 @@
     - name: /etc/backuppc/hosts
     - text: "{{ host }}    0    {{ hostinfo['user'] }}"
 
+
+# here we add the known_hosts fingerprint, but we do not have it.
+# so the backuppc server will need to querying the remote backuppc client
   {% if hostinfo.has_key('SaltHostname') %}
 known_host__{{ grains['id']}}__{{ hostinfo['SaltHostname'] }}:
   module.run:
