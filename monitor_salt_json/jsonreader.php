@@ -52,7 +52,8 @@ $( document ).ready(function() {
             echo "thead.append('<tr><th>Server</th><th>Status</th></tr>')"."\n";
         }
         elseif($data == "_services") {
-            echo "thead.append('<tr><th>Server</th><th>Servicename</th><th>Status</th><th>Comment</th><th>Start</th></tr>')"."\n";
+            //echo "thead.append('<tr><th>Server</th><th>Servicename</th><th>Status</th><th>Comment</th><th>Start</th></tr>')"."\n";
+            echo "thead.append('<tr><th>Server</th><th>Command Result</th><th>Service</th><th>Status</th></tr>')"."\n";
         }
         elseif($data == "_disks") {
             echo "thead.append('<tr><th>Server</th><th>Mountpoint</th><th>Usage [%]</th></tr>')"."\n";
@@ -84,20 +85,23 @@ $( document ).ready(function() {
                         echo "$('<td>').html('".$name."').appendTo(tr);"."\n";
 
                         foreach ($servArray as $daemon_type => $daemonval) {
-                            if($daemon_type == "name") {
+                            /*if($daemon_type == "name") {
                                 $html_str_name = "<td>".$daemonval."</td>";
                             }
-                            elseif($daemon_type == "result") {
+                            elseif($daemon_type == "result") {*/
+                            if($daemon_type == "result") {
                                 if ( $daemonval ==  null) {
                                     $daemonval = "0";
                                 }
                                 $html_str_result = "<td>".$daemonval."</td>";
                             }
-                            elseif($daemon_type == "comment") {
+                            /*elseif($daemon_type == "comment") {
                                 $html_str_comment = "<td>".$daemonval."</td>";
-                            }
-                            elseif($daemon_type == "start_time") {
-                                $html_str_start = "<td>".$daemonval."</td>";
+                            }*/
+                            elseif($daemon_type == "changes") {
+                                $ret_daemonval = $daemonval["ret"];
+                                $html_str_start = "<td>".$ret_daemonval[0]."</td>";
+                                $html_str_start .= "<td>".$ret_daemonval[1]."</td>";
                             }
                             else {  }
                         }
@@ -155,24 +159,22 @@ $( document ).ready(function() {
         }
         <?php } elseif($data == "_services") { ?>
             "pageLength": -1,
-            "order": [[ 2, "asc" ], [0, "asc"]],
+            "order": [[ 3, "asc" ], [0, "asc"], [2, "asc"]],
             "createdRow": function( row, data, dataIndex ) {
-            if ( data[2] == "1" ) {
+            if ( data[3] == "1" ) {
                 /* Service / daemon status is ok */
-                $('td', row).eq(0).addClass('true');
-                $('td', row).eq(1).addClass('true');
-                $('td', row).eq(2).addClass('true');
-                if ( data[3].indexOf("has been enabled") != -1 ) {
-                    $('td', row).eq(3).addClass('warning');
-                } else {
-                    $('td', row).eq(3).addClass('true');
-                }
+                $('td', row).addClass('true');
             }
             else {
                 /* Service / daemon status is down */
-                $('td', row).eq(0).addClass('false');
-                $('td', row).eq(1).addClass('false');
-                $('td', row).eq(2).addClass('false');
+                $('td', row).addClass('false');
+                /*    
+                    if ( data[3].indexOf("has been enabled") != -1 ) {
+                        $('td', row).eq(3).addClass('warning');
+                    } else {
+                        $('td', row).eq(3).addClass('true');
+                    }
+                */
             }
         }
         <?php } elseif($data == "_disks") { ?>

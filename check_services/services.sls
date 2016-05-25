@@ -32,15 +32,27 @@
    {% if grains['id'] == hostinfo['SaltHostname'] %}
     {% for service in hostinfo['services'] %}
      {% if preset_servicenames.has_key(service) %}
+
 {{ preset_servicenames[service] }}__{{ grains['id'] }}:
-  service.running:
-    - name: {{ preset_servicenames[service] }}
-    - enable: True
+  module.run:
+    - name: customservice.status
+    - m_name: {{ preset_servicenames[service] }}
+#{{ preset_servicenames[service] }}__{{ grains['id'] }}__static_state: 
+#  service.running:
+#    - name: {{ preset_servicenames[service] }}
+#    - enable: True
+
      {% else %}
+
 {{ service }}__{{ grains['id'] }}:
-  service.running: 
-    - name: {{ service }}
-    - enable: True
+  module.run:
+    - name: customservice.status
+    - m_name: {{ service }} 
+#{{ service }}__{{ grains['id'] }}__static_state: 
+#  service.running: 
+#    - name: {{ service }}
+#    - enable: True
+
      {% endif %}
 
     {% endfor %}
