@@ -140,7 +140,7 @@ $( document ).ready(function() {
         "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
         <?php if($data == "_hosts_status") { ?>
             "pageLength": -1,
-            "order": [[ 1, "asc" ], [0, "asc"]],
+            "order": [[ 1, "desc" ], [0, "asc"]],
             "createdRow": function( row, data, dataIndex ) {
             if ( data[1] == "1" ) {
                 /* Server status */
@@ -162,6 +162,11 @@ $( document ).ready(function() {
                 $('td', row).eq(0).addClass('true');
                 $('td', row).eq(1).addClass('true');
                 $('td', row).eq(2).addClass('true');
+                if ( data[3].indexOf("has been enabled") != -1 ) {
+                    $('td', row).eq(3).addClass('warning');
+                } else {
+                    $('td', row).eq(3).addClass('true');
+                }
             }
             else {
                 /* Service / daemon status is down */
@@ -204,11 +209,11 @@ $( document ).ready(function() {
     <br />
     <br />
     Select Data :
-    <input type="radio" name="data" value="_hosts_status" /> Servers states
+    <input type="radio" name="data" value="_hosts_status" checked /> Server status
     &nbsp;
     &nbsp;
     &nbsp;
-    <input type="radio" name="data" value="_services" /> Services states
+    <input type="radio" name="data" value="_services" /> Daemon status
     &nbsp;
     &nbsp;
     &nbsp;
