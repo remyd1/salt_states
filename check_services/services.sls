@@ -32,7 +32,12 @@
    {% if grains['id'] == hostinfo['SaltHostname'] %}
     {% for service in hostinfo['services'] %}
      {% if preset_servicenames.has_key(service) %}
+      {% if service == "sge" %}
+{{ preset_servicenames[service] }}__{{ grains['id'] }}:
+  cmd.run:
+    - name: pgrep sge_qmaster
 
+      {% else %}
 {{ preset_servicenames[service] }}__{{ grains['id'] }}:
   module.run:
     - name: customservice.status
@@ -42,6 +47,7 @@
 #    - name: {{ preset_servicenames[service] }}
 #    - enable: True
 
+      {% endif %}
      {% else %}
 
 {{ service }}__{{ grains['id'] }}:
