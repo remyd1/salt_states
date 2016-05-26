@@ -85,11 +85,10 @@ $( document ).ready(function() {
                         echo "$('<td>').html('".$name."').appendTo(tr);"."\n";
 
                         foreach ($servArray as $daemon_type => $daemonval) {
-                            /*if($daemon_type == "name") {
+                            if($daemon_type == "name" && $daemonval != "customservice.status") {
                                 $html_str_name = "<td>".$daemonval."</td>";
                             }
-                            elseif($daemon_type == "result") {*/
-                            if($daemon_type == "result") {
+                            elseif($daemon_type == "result") {
                                 if ( $daemonval ==  null) {
                                     $daemonval = "0";
                                 }
@@ -99,21 +98,28 @@ $( document ).ready(function() {
                                 $html_str_comment = "<td>".$daemonval."</td>";
                             }*/
                             elseif($daemon_type == "changes") {
-                                $ret_daemonval = $daemonval["ret"];
-                                $html_str_start = "<td>".$ret_daemonval[0]."</td>";
-                                $html_str_start .= "<td>".$ret_daemonval[1]."</td>";
+                                if(array_key_exists("ret", $daemonval)) {
+                                    $ret_daemonval = $daemonval["ret"];
+                                    $html_str_changes = "<td>".$ret_daemonval[0]."</td>";
+                                    $html_str_changes .= "<td>".$ret_daemonval[1]."</td>";
+                                }
+                                elseif(array_key_exists("stdout", $daemonval)) {
+                                    $ret_daemonval = $daemonval["stdout"];
+                                    $html_str_changes = "<td>".$ret_daemonval."</td>";
+                                }
                             }
-                            else {  }
+                            else {
+                                //$html_str_name = "";
+                            }
                         }
-                        $tdhtml = $html_str_name.$html_str_result.$html_str_comment.$html_str_start;
+                        $tdhtml = $html_str_result.$html_str_name.$html_str_changes;
                         echo 'tr.append("'.$tdhtml.'");'."\n";
                         echo 'tbody.append(tr);'."\n";
                         //reinitialize
                         $tdhtml = "";
                         $html_str_name = "";
                         $html_str_result = "";
-                        $html_str_comment = "";
-                        $html_str_start = "";
+                        $html_str_changes = "";
                     }
                     else {
                         echo 'var tr = $("<tr>");'."\n";
@@ -161,22 +167,33 @@ $( document ).ready(function() {
             "pageLength": -1,
             "order": [[ 3, "asc" ], [0, "asc"], [2, "asc"]],
             "createdRow": function( row, data, dataIndex ) {
-            if ( data[3] == "1" ) {
-                /* Service / daemon status is ok */
-                $('td', row).addClass('true');
-            }
-            else {
-                /* Service / daemon status is down */
-                $('td', row).addClass('false');
-                /*    
-                    if ( data[3].indexOf("has been enabled") != -1 ) {
-                        $('td', row).eq(3).addClass('warning');
-                    } else {
-                        $('td', row).eq(3).addClass('true');
+                if ( data[2].indexOf("pgrep") != -1) {
+                    var PID = data[3];
+                    if (!isNaN(parseFloat(PID)) && isFinite(PID)) {
+                        $('td', row).addClass('true');
                     }
-                */
+                    else {
+                        $('td', row).addClass('false');
+                    }
+                }
+                else {
+                    if ( data[3] == "1" ) {
+                        /* Service / daemon status is ok */
+                        $('td', row).addClass('true');
+                    }
+                    else {
+                        /* Service / daemon status is down */
+                        $('td', row).addClass('false');
+                        /*    
+                        if ( data[3].indexOf("has been enabled") != -1 ) {
+                            $('td', row).eq(3).addClass('warning');
+                        } else {
+                            $('td', row).eq(3).addClass('true');
+                        }
+                        */
+                    }
+                }
             }
-        }
         <?php } elseif($data == "_disks") { ?>
             "pageLength": 25,
             "order": [[ 2, "desc" ], [0, "asc"]],
