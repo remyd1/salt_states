@@ -83,10 +83,12 @@ $( document ).ready(function() {
                         $servArray = $hostArray[$subname];
                         echo 'var tr = $("<tr>");'."\n";
                         echo "$('<td>').html('".$name."').appendTo(tr);"."\n";
+                        $pgrep = False;
 
                         foreach ($servArray as $daemon_type => $daemonval) {
                             if($daemon_type == "name" && $daemonval != "customservice.status") {
                                 $html_str_name = "<td>".$daemonval."</td>";
+                                $pgrep = True;
                             }
                             elseif($daemon_type == "result") {
                                 if ( $daemonval ==  null) {
@@ -109,7 +111,9 @@ $( document ).ready(function() {
                                 }
                             }
                             else {
-                                //$html_str_name = "";
+                                if($pgrep != True) {
+                                    $html_str_name = "";
+                                }
                             }
                         }
                         $tdhtml = $html_str_result.$html_str_name.$html_str_changes;
@@ -118,6 +122,7 @@ $( document ).ready(function() {
                         //reinitialize
                         $tdhtml = "";
                         $html_str_name = "";
+                        $pgrep = False;
                         $html_str_result = "";
                         $html_str_changes = "";
                     }
@@ -136,6 +141,7 @@ $( document ).ready(function() {
 
     }
     else {
+        $data = "_hosts_status";
         echo '$("#datechoose").datepicker({dateFormat: "yymmdd"}).datepicker("setDate", new Date());'."\n";
     }
 ?>
