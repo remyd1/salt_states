@@ -14,8 +14,10 @@ The main advantage of this solution is to have a very brief information about th
 
 Once these warnings said, you could use some files here to create json files regularly (see check_salt_json.cron.bash file) and the php code to display the results. This means that you need a web server on your salt master with php enabled.
 
+Disk usage display:
 ![Image of disk usage](https://cloud.githubusercontent.com/assets/929620/24663179/70d95246-1957-11e7-84fc-c817e0d662db.png)
 
+It is quite similar for services and server's status.
 
 The cron script creates daily json files in ```/var/www/html/exports/YYYYMM/YYYYMMDD_type_of_export.json```
 
