@@ -1,4 +1,4 @@
-If you want to to basic monitoring with salt, it is possible with the [check_services](../check_services/README.md) salt states, and some modules already availables (disk.percent , test.ping).
+If you want to to basic monitoring with salt, it is possible with the [check_services](../check_services/) salt states, and some modules already availables (disk.percent , test.ping).
 
 The main advantage of this solution is to have a very brief information about the state of your servers pool (the minions) in a single web page with a system of green/red color:
  - disk usage (percentage, red if &gt;90% ),
@@ -9,7 +9,7 @@ The main advantage of this solution is to have a very brief information about th
  - This is not 'real' time monitoring just a reporting system !
  - Real time monitoring with salt should be done using [salt mine](https://docs.saltstack.com/en/latest/topics/mine/). Then, add [salt reactor](https://docs.saltstack.com/en/latest/topics/reactor/), if you want alerts.
  - You may also consider using [salt-monitor](https://github.com/thatch45/salt-monitor).
- - Finally, do not forget to add a true monitoring solution to complete this (e.g. see [ganglia states](../ganglia_client/README.md)).
+ - Finally, do not forget to add a true monitoring solution to complete this (e.g. see [ganglia states](../ganglia_client/)).
 
 
 Once these warnings said, you could use some files here to create json files regularly (see check_salt_json.cron.bash file) and the php code to display the results. This means that you need a web server on your salt master with php enabled.
