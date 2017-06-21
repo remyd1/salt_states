@@ -2,7 +2,7 @@
  {% if hostinfo.has_key('RsyncShareName') %}
 /etc/backuppc/{{ host }}.pl:
   file.managed:
-    - source: salt://backuppc_add_client/template.pl
+    - source: salt://backuppc/backuppc_add_client/template.pl
     - mode: 640
     - user: backuppc
     - group: www-data

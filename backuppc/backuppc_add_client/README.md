@@ -41,12 +41,20 @@ This formula expects a C class network, but you can modify it to allow full IP i
 
 
 - Create a salt nodegroup 'backup' where you put your backuppc servers in it.
+- Or create a salt grain called 'roles' and set it to ['backup'] where you put your backuppc servers in it.
+eg
+```
+salt 'backuppcserver' grains.append roles backup
+```
 
 
 - Apply this formula:
 
 ```bash
-salt -N 'backup' state.sls backuppc_add_client
+# for a nodegroup
+salt -N 'backup' state.sls backuppc.backuppc_add_client
+# for a grain 'roles:backup'
+salt -G 'roles:backup' state.sls backuppc.backuppc_add_client
 ```
 
 This will deploy new backuppc clients config files and update /etc/hosts on backuppc servers (-N 'backup').

@@ -1,13 +1,13 @@
 /etc/cron.daily/passwd:
   file.managed:
-    - source: salt://backuppc_client/cron.daily.passwd
+    - source: salt://backuppc/backuppc_client/cron.daily.passwd
     - mode: 700
     - user: root
     - group: root
 
 /etc/cron.daily/checkacl:
   file.managed:
-    - source: salt://backuppc_client/cron.daily.checkacl
+    - source: salt://backuppc/backuppc_client/cron.daily.checkacl
     - mode: 700
     - user: root
     - group: root

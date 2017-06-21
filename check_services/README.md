@@ -1,6 +1,6 @@
 This formula checks services/daemon from a pillar [pillar:machines/hosts.sls].
 
-You can read how to write this file if you read the [REAME.md file from backuppc_add_client](../backuppc_add_client/)
+You can read how to write this file if you read the [REAME.md file from backuppc_add_client](../backuppc/backuppc_add_client/)
 
 
 Usage:

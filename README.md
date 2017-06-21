@@ -2,7 +2,7 @@
 
 The main idea here, is to have salt formulas to do:
  - [basic monitoring](monitor_salt_json/) using some states (ganglia, [check_services](check_services/)) and salt modules (built-in), 
- - [backup](backuppc_add_client/) some minions using salt states, salt custom modules and backuppc.
+ - [backup](backuppc/backuppc_add_client/) some minions using salt states, salt custom modules and backuppc.
 
 All you need are the states here and a pillar. _You just have to maintain one pillar file and refresh it on minions._
 
