@@ -30,6 +30,8 @@ known_host__{{ grains['id']}}__{{ hostinfo['SaltHostname'] }}:
     - name: ssh.set_known_host
     - user: "backuppc"
     - hostname: "{{ host }}"
+# encryption must be set to avoid fake duplicate (eg. : one ssh-rsa and one ecdsa) for one host in the known_hosts file
+    - enc: ssh-rsa
   {% endif %}
 
  {% endif %}

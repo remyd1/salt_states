@@ -8,6 +8,7 @@ cron_service_acl:
   service.running:
     - name: {{ name }}
     - enable: True
-    - reload: True
+# reload does not exist anymore on systemd for cron. Let's do a restart instead.
+#    - reload: True
     - watch:
       - file: /etc/cron.daily/checkacl

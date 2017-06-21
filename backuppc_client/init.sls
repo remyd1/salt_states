@@ -1,6 +1,6 @@
 include:
     - backuppc_client.keys
-{% if grains['os'] == 'Ubuntu' %}
+{% if grains['os_family'] == 'Debian' %}
     - backuppc_client.users
     - backuppc_client.packages
     - backuppc_client.files
