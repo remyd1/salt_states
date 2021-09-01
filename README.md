@@ -1,5 +1,9 @@
 # salt_states
 
+| :exclamation:  This project is no longer maintained. For a new release, check [this project](https://gitlabpriv.mbb.univ-montp2.fr/repos/jsonreader2/). |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+
 The main idea here, is to have salt formulas to do:
  - [basic monitoring](monitor_salt_json/) using some states (ganglia, [check_services](check_services/)) and salt modules (built-in), 
  - [backup](backuppc/backuppc_add_client/) some minions using salt states, salt custom modules and backuppc.
